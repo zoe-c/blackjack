@@ -20,38 +20,28 @@ function handValue (hand) {
    var sum = 0;
 
 //starting the loop to check hand array for face/ special case (ace)
-   for (i = 0; i <= hand.length-1 ; i++) {
+   for (i = 0; i < hand.length; i++) {
 
       //if the current card is : K,Q,J.. assigning it the numerical value of 10.
-      if (hand[i] === "K" || hand[i] === "Q" || hand[i] === "J") {
-      hand[i] === 10;
+      if ((hand[i] == "K") || (hand[i] == "Q") || (hand[i] == "J")) {
+      hand[i] = 10;
       // hand.splice(hand[i], 1);
       // sum += 10;
       }
 
-      //if the current card is : A, take it out of the hand and put it in temporary array "acesInWaiting"
-      //we'll add the rest of the values up later, THEN determine which value (1, 11) we want our ace(s) to have (based on the sum of the rest of the cards).
-      else if (hand[i] === "A") {
+      //if the current card is : A, assign it to 1 and put it in temporary array "acesInWaiting"
+      //we'll add the rest of the hand's values up, THEN determine which value (1, 11) we want our ace(s) to have (based on the sum of the rest of the cards).
+      else if (hand[i] == "A") {
       acesInWaiting.push(hand[i]);
-      hand.splice(hand[i], 1);
+      hand[i] = 1;
       }
-      else{
-         parseInt(hand[i]);
-      }
-      sum = hand.reduce((a,b) => a + b, 0);
-      return sum;
+      sum = hand.reduce((a,b) => a + +b, 0);
    }
    if (sum <= 10) {
-      if (acesInWaiting.length = 1) {
-         acesInWaiting[i] = 11;
+      if (acesInWaiting.length == 1) {
+         sum += 10;
       }
-      else if (acesInWaiting.length > 1) {
-         acesInWaiting[i] = 1;
-      }
-      acesInWaiting.reduce((a,b) => a + b, 0);
-      sum += acesinWaiting;
    }
-
    return sum;
 }
 
